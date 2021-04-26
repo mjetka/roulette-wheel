@@ -1,32 +1,8 @@
-'''general.py
-
-PURPOSE:    To provide the basic betting options and random spin generation for
-            American-style roulette.
-
-            This is a fairly primitive roulette betting version, as the betting
-            styles 8--11 aren't completely accurate: in standard roulette,
-            betting on two numbers (split) must be adjacent on the roulette
-            board. Similar for the other betting styles. This version allows
-            splitting over any numbers.
-
-FURTHER
-READING:    Additional documentation on the basic rules of roulette can be
-            found here:
-            => http://www.ildado.com/roulette_rules.html
-            => http://www.rouletteonline.net/odds/
-            => https://en.wikipedia.org/wiki/Roulette
-
-AUTHOR:     Nicholas P. Taliceo
-            ntaliceo@gmail.com  |  www.NicholasTaliceo.com
-
-DATE:       August 06, 2017
-'''
-
 import random
 
 bankroll = int(input("What is your starting balance (in whole $$): "))
 
-
+#Assigning values on a roulette wheel to colors
 def spins():
     global slots
     slots = {'00': 'green', '0': 'green', '1': 'red', '2': 'black',
@@ -43,7 +19,7 @@ def spins():
     result = random.choice(list(slots.keys()))
     return result
 
-
+#Choosing what type of bet and wager amount
 def bet_value(bet_type):
     if bet_type == 1:
         bet_val = int(input("Is it an EVEN (1) or an ODD (2) bet?: "))
@@ -100,7 +76,7 @@ def bet_value(bet_type):
         bet_val = input("What number do you want to choose 00, 0, 1-36?: ")
         return bet_val
 
-
+#Adjusting funds based on bets
 def adjusted_bankroll(result, balance, bet_val):
     balance -= bet
     # Adjust player balance for even/odd bets.
@@ -229,4 +205,4 @@ while (keep_playing.lower() == 'yes') or (keep_playing.lower() == 'y'):
     print("\nThe winning number is: %s!" % spins())
     print(prmpt)
     bankroll = balance
-    keep_playing = input("Would you like to keep playing? (Y/N): ")
+    keep_playing = input("Would you like to keep playing? (type Y to continue): ")
